@@ -1,0 +1,133 @@
+<div class="container">
+    <div style="width: 900px;min-height: 400px">
+        <div style="display: flex;justify-content: space-between;padding: 20px 0;">
+            <div style="font-size: 16px;color: #4b4b4b;">Approvisonnement du {{ApprovDate}}
+                <div style="font-size: 12px;color: #4b4b4b;margin-top: 10px">{{approProductName}} : <span *ngFor="let variante of approVariantePropriete">{{variante}} </span></div>
+            </div>
+            <div style="display: inline-flex;">
+                <div style="margin-right: 10px;margin-top: -3px;">{{detailAppro.nomFournisseur}}</div>
+                <div style="width: 15px;height: 15px;border-radius: 20px;background-color: green;"></div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <div style="padding-top: 80px">
+                    <div class="row">
+                        <div class="col-4" style="text-align: center;">
+                            <div style="display: flex;justify-content:flex-start">
+                                <div style="background-color: #c56cf0;color: #FFF;padding: 5px 10px;width: 50px;height: 35px;border-radius: 5px;">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" style="font-size: 25px;">local_mall</mat-icon>
+                                </div>
+                                <div style="padding-top: 2px;margin-left: 10px;margin-top: -5px;">
+                                    Prix d'achat
+                                    <div style="text-align: left;font-size: 12px;color: #919191;">{{detailAppro.PUAchat}}</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="col-4" style="text-align: center;">
+                            <div style="display: flex;justify-content:flex-start">
+                                <div style="background-color: #1e272e;color: #FFF;padding: 5px 10px;width: 50px;height: 35px;border-radius: 5px;">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" style="font-size: 25px;">point_of_sale</mat-icon>
+                                </div>
+                                <div style="padding-top: 2px;margin-left: 10px;margin-top: -5px;">
+                                    Prix de vente
+                                    <div style="text-align: left;font-size: 12px;color: #919191;">{{detailAppro.puVente}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4" style="text-align: center;">
+                            <div style="display: flex;justify-content:flex-start">
+                                <div style="background-color: #4a69bd;color: #FFF;padding: 5px 10px;width: 50px;height: 35px;border-radius: 5px;">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" style="font-size: 25px;">all_inclusive</mat-icon>
+                                </div>
+                                <div style="padding-top: 2px;margin-left: 10px;margin-top: -5px;">
+                                    Stock initial
+                                    <div style="text-align: left;font-size: 12px;color: #919191;">{{stockInitial}}</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-4" style="text-align: center;">
+                            <div style="display: flex;justify-content:flex-start">
+                                <div style="background-color: #ee5253;color: #FFF;padding: 5px 10px;width: 50px;height: 35px;border-radius: 5px;">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" style="font-size: 25px;">emergency</mat-icon>
+                                </div>
+                                <div style="padding-top: 2px;margin-left: 10px;margin-top: -5px;">
+                                    Stock restant
+                                    <div style="text-align: left;font-size: 12px;color: #919191;">{{stockRestant}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-4" style="text-align: center;">
+                            <div style="display: flex;justify-content:flex-start">
+                                <div style="background-color: #feca57;color: #FFF;padding: 5px 10px;width: 50px;height: 35px;border-radius: 5px;">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" style="font-size: 25px;">receipt</mat-icon>
+                                </div>
+                                <div style="padding-top: 2px;margin-left: 10px;margin-top: -5px;">
+                                    Stock vendu
+                                    <div style="text-align: left;font-size: 12px;color: #919191;">{{stockVendu}}</div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-4" style="text-align: center;">
+                            <div style="display: flex;justify-content:flex-start">
+                                <div style="background-color: #10ac84;color: #FFF;padding: 5px 10px;width: 50px;height: 35px;border-radius: 5px;">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" style="font-size: 25px;">savings</mat-icon>
+                                </div>
+                                <div style="padding-top: 2px;margin-left: 10px;margin-top: -5px;">
+                                    Bénéfice prévu
+                                    <div style="text-align: left;font-size: 12px;color: #919191;">{{benefAttendu}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-6" style="text-align: center;">
+                            <div style="display: flex;justify-content:flex-start">
+                                <div style="background-color: #8395a7;color: #FFF;padding: 5px 10px;width: 50px;height: 35px;border-radius: 5px;">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" style="font-size: 25px;">pending_actions</mat-icon>
+                                </div>
+                                <div style="padding-top: 2px;margin-left: 10px;margin-top: -5px;">
+                                    Bénéfice effectuer
+                                    <div style="text-align: left;font-size: 12px;color: #919191;">{{benefFait}}</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        
+                        
+                    </div>
+                    <ul style="list-style: none;padding-left: 20px;">
+                        <li style="background-color: #4a69bd;color: #FFF;">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-5">
+                <div
+                    style="border: 5px solid #e0e0e0;width: 100%;min-height: 300px;border-bottom: none;border-radius: 25px;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;padding: 10px;">
+                    <div style="font-size: 16px;text-transform: uppercase;text-align: center;">Historique de vente</div><br>
+                    <ul style="padding-left: 0px;list-style: none;height: 250px;overflow-y: scroll;">
+                        <li *ngFor="let histori of historique" style="margin: 15px 0;">
+                            <div style="display: flex;justify-content: space-between;font-size: 13px;">
+                                <a (click)="changePage2('commande', 'detailcommande', histori.id)" style="text-decoration: none;color: #4a69bd;">#{{histori.refCommande}}</a>
+                                <div>{{histori.date.toDate() | momentDate }}</div>
+                            </div>
+                            <div style="font-size: 11px;color: #919191;">x {{histori.quantite}} </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

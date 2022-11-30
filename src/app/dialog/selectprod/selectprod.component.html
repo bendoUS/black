@@ -1,0 +1,18 @@
+<div class="container-fluid" style="min-width: 700px;padding: 50px;background-color: #FFF;max-height: 600px;overflow: scroll;">
+    <div>
+        <ul style="list-style: none;">
+            <li *ngFor="let product of currentCommandeProduct" style="margin-bottom: 10px">
+                <div style="width: 500px;background-color: #4a69bd;padding: 10px;margin-bottom: 10px;font-size: 17px;color: #FFF;">{{ product.designation }}</div>
+                <ul style="list-style: none;">
+                    <li *ngFor="let variantes of product.varianteListe" style="width: 467px;">
+                        <div style="width: 100%;background-color: rgb(230, 230, 230);padding: 5px;margin-bottom: 5px;"><span *ngFor="let propVar of variantes.proprieteVariante">{{propVar}} </span></div>
+                        <ul style="list-style: none;">
+                            <li (click)="selectApprov(product, variantes, aprov)" *ngFor="let aprov of variantes.approListe" style="padding: 7.5px;font-size: 11px;cursor: pointer;padding-bottom: 10px;"><span style="padding-right: 30px;">{{ aprov.dateAppro.toDate() | momentDate }}</span> <span style="padding-left: 30px;">{{ aprov.quantiteRestante }}</span></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

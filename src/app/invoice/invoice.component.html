@@ -1,0 +1,83 @@
+<!--div id="content" class="container-flud">
+
+    <div style="background-color: #273c75;width: 100%;height: 200px;text-align: center;padding-top: 75px">
+        <div style="font-size: 25px;text-transform: uppercase;color: #FFF;">KAFED AGRO</div>
+        <div style="margin-top: 10px;color: rgba(255, 255, 255, 0.70);">Producteur de produit agricole</div>
+    </div>
+    <div style="background-color: #FFF;height: 800px;width: 100%;padding: 50px 100px;font-weight: 300;">
+        <div style="display: flex;justify-content: space-between;">
+            <div style="font-size: 15px;">
+                <div>Mardi, 10 Janvier 2020</div>
+                <div>info@kafedagro.com</div>
+                <div>+228 90232368</div>
+            </div>
+            <div style="text-align: right;font-size: 15px;text-transform: uppercase;">Numéro de facture <br> #BEHejGRVFnRPzq6Fmf1a</div>
+        </div><br><br><br>
+        <div style="width: 100%;">
+            <div class="row" style="border-bottom: 1px solid #494949;padding-bottom: 20px;width: 100%;">
+                <div class="col-12" style="margin-bottom: 20px;">
+                    <div class="row">
+                        <div class="col-3" style="font-size: 15px;text-align: left;text-transform: uppercase;">Produit</div>
+                        <div class="col-3" style="font-size: 15px;font-weight: 300;text-align: center;text-transform: uppercase;">Quantité</div>
+                        <div class="col-3" style="font-size: 15px;font-weight: 300;text-align: center;text-transform: uppercase;">Prix</div>
+                        <div class="col-3" style="font-size: 15px;font-weight: 300;text-align: right;text-transform: uppercase;">Total</div>
+                    </div>
+                </div>
+                <div class="col-12" style="margin-top: 15px;">
+                    <div class="row">
+                        <div class="col-3" style="font-size: 13px;font-weight: 400;text-align: left;">Son cubé <div style="font-size: xx-small;color: #676767;margin-top: -5px">Jaune Red</div> </div>
+                        <div class="col-3" style="font-size: 13px;font-weight: 400;text-align: center;">560</div>
+                        <div class="col-3" style="font-size: 13px;font-weight: 400;text-align: center;">45 CFA</div>
+                        <div class="col-3" style="font-size: 13px;font-weight: 400;text-align: right;">29000 CFA</div>
+                    </div>
+                </div>
+                <div class="col-12" style="margin-top: 15px;">
+                    <div class="row">
+                        <div class="col-3" style="font-size: 13px;font-weight: 400;text-align: left;">Son cubé <div style="font-size: xx-small;color: #676767;margin-top: -5px">Jaune Red</div></div>
+                        <div class="col-3" style="font-size: 13px;font-weight: 400;text-align: center;">560</div>
+                        <div class="col-3" style="font-size: 13px;font-weight: 400;text-align: center;">45 CFA</div>
+                        <div class="col-3" style="font-size: 13px;font-weight: 400;text-align: right;">29000 CFA</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-5 offset-7" style="padding-top: 20px;">
+                    <div style="display: flex;justify-content: space-between;">
+                        <div>Sous-Total</div>
+                        <div>54000 CFA</div>
+                    </div><br>
+                    <div style="display: flex;justify-content: space-between;">
+                        <div>Expédition</div>
+                        <div>54000 CFA</div>
+                    </div><br>
+                    <div style="display: flex;justify-content: space-between;">
+                        <div>Réduction</div>
+                        <div>54000 CFA</div>
+                    </div><br>
+                    <div style="display: flex;justify-content: space-between;font-weight: 500;">
+                        <div>Total</div>
+                        <div>54000 CFA</div>
+                    </div>
+                </div>
+            </div><br><br>
+
+            <div>
+                <div style="font-size: large;text-transform: uppercase;font-weight: 400;">Facturé à</div><br>
+                <div>
+                    Stéphane Chaubert <br>
+                    Coopérative de Mercure <br>
+                    stephane@mercure.fr
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="position: fixed;bottom: 70px;right: 30px;">
+    <button mat-flat-button color="primary">convertPDF</button>
+</div-->
+
+<div *ngFor="let hero of (tabA | orderQuantite)">
+    {{hero.productName }} : {{hero.quantite}}
+</div>

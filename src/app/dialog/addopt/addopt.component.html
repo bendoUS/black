@@ -1,0 +1,39 @@
+<div class="container-fluid" style="min-width: 800px;padding: 50px;background-color: #e6e9f5;">
+    <div style="width: 100%;">
+        <h3 style="text-transform: uppercase;text-align: center;">Modifier la variante</h3><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-8 offset-2">
+                    <div  style="background-color: white;border-radius: 10px;padding: 20px;width: 100%;min-height: 120px;">
+                        
+                        <div>
+                            <h4>Option</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="text" [(ngModel)]="option">
+                                <button style="border-radius: 3px;" *ngIf="option" matSuffix mat-icon-button
+                                    aria-label="Clear" (click)="option=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h4>Valeur par defaut</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="text" [(ngModel)]="defaut">
+                                <button style="border-radius: 3px;" *ngIf="defaut" matSuffix mat-icon-button
+                                    aria-label="Clear" (click)="defaut=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                    
+                        <div><button (click)="updateVariante()" style="width: 100%;" mat-raised-button
+                            color="primary">Enrégistrer</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

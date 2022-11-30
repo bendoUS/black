@@ -1,0 +1,92 @@
+<mat-progress-bar *ngIf="loader" mode="indeterminate"></mat-progress-bar>
+<div class="container-fluid" style="min-width: 1000px;padding: 50px;background-color: #e6e9f5;">
+    <div style="width: 100%;max-height: 600px;overflow-y: scroll;">
+        <h3 style="text-transform: uppercase;text-align: center;">Approvisioner le stock</h3><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div style="border-radius: 10px;padding: 0;">
+                        <h4
+                            style="border-radius: 5px;padding: 10px 20px;font-weight: 500;color: rgb(92, 92, 92);margin-bottom: 0px;background-color: white;">
+                            Historique d'approvisionnement</h4>
+                        <div>
+                            <div *ngFor="let appro of productLastAppro"
+                                style="background-color: white;border-radius: 5px;padding: 15px 10px;vertical-align: middle;margin-top: 10px;">
+                                <div class="row">
+                                    <div class="col-5" style="font-size: 12px;">{{ appro.dateAppro.toDate() | momentDate
+                                        }}</div>
+                                    <div class="col-5" style="font-size: 12px;">
+                                        <span *ngFor="let variante of appro.varianteName">{{ variante }} </span>
+                                    </div>
+                                    <div class="col-2" style="font-size: 12px;">{{ appro.quantite }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="background-color: white;border-radius: 10px;padding: 20px;width: 100%;">
+                        <div>
+                            <h4>Variante</h4>
+                            <mat-form-field class="col-12" style="margin-top: -15px;" appearance="outline">
+                                <mat-label>Choisir une variante</mat-label>
+                                <mat-select [(value)]="variID">
+                                    <mat-option *ngFor="let vari of VarianteList.variante" [value]="vari.varianteId">
+                                        <span *ngFor="let vara of vari.proprieteVariante">{{ vara }} </span>
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h4>Quantité</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="number" [(ngModel)]="quantiteAprv">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h4>Prix unitaire d'achat</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="number" [(ngModel)]="prixua">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h4>Prix unitaire de vente</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="number" [(ngModel)]="prixuv">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h4>Nom du Fournisseur</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="text" [(ngModel)]="nomFournisseur">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h4>Choisir une date</h4>
+                            <mat-form-field appearance="outline" style="width: 100%;">
+                                <input matInput [(ngModel)]="appDate" [matDatepicker]="dateAprov">
+                                <mat-datepicker-toggle matSuffix [for]="dateAprov">
+                                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #dateAprov disabled="false"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <h4>Observation</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="text" [(ngModel)]="obsrvt">
+                            </mat-form-field>
+                        </div>
+                        <div><button style="width: 100%;" (click)="addAppro()" mat-raised-button
+                                color="primary">Enrégistrer</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

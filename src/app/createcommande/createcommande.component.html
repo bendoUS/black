@@ -1,0 +1,173 @@
+<mat-progress-bar *ngIf="loader" mode="indeterminate"></mat-progress-bar>
+<div class="createContainer">
+    <div class="container">
+        <div class="headerDiv">
+            <div class="row">
+                <div class="col-6" style="display: flex;color: rgb(66, 66, 66);">
+                    <mat-icon (click)="changePage3('commande', 'all')" aria-hidden="false" aria-label="Example home icon" style="cursor: pointer;">arrow_back
+                    </mat-icon>
+                    <div style="padding-top: 2.5px;font-size: 15px;font-weight: 600;cursor: pointer;">
+                        Créer une commande
+                    </div>
+                </div>
+                <div class="col-6" style="text-align: right;">
+                    <button (click)="addCommande()" mat-flat-button color="primary">Enrégistrer la commande</button>
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-8">
+                <div style="width: 100%;min-height: 400px;background: #FFF;border-radius: 20px;">
+                    <div style="width: 100%;display: flex;justify-content: space-between;padding: 20px;">
+                        <div style="font-size: 17px;">Produits</div>
+                        <div style="display: flex;justify-content: end;">
+                            <div (click)="addProd()" style="text-decoration: none;color: #4a69bd;cursor: pointer;">
+                                Ajouter un article</div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 20px 20px;">
+                        <div class="col-12">
+                            <div class="row" style="padding: 0 20px;">
+
+                                <div class="col-12" style="padding: 15px 0;">
+                                    <div class="row">
+                                        <div class="col-3" style="font-size: 14px;font-weight: 500;">Produit</div>
+                                        <div class="col-3" style="font-size: 14px;font-weight: 500;">Approvisionement
+                                        </div>
+                                        <div class="col-3" style="font-size: 14px;font-weight: 500;">Quantité</div>
+                                        <div class="col-2" style="font-size: 14px;font-weight: 500;">Total</div>
+                                        <div class="col-1" style="font-size: 14px;font-weight: 500;">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div *ngFor="let product of productList" class="col-12" style="padding: 5px 0;">
+                                    <div class="row">
+                                        <div class="col-3" style="font-size: 12px;">
+                                            <div><a href="#" style="text-decoration: none;color: #4a69bd;">{{
+                                                    product.productData.designation }}</a></div>
+                                            <div style="font-size: 11px;color: #5f5f5f;"><span
+                                                    *ngFor="let varia of product.varianteData.proprieteVariante">{{
+                                                    varia }} </span></div>
+                                            <div style="font-size: 11px;color: #5f5f5f;">{{ product.approvData.puVente
+                                                }} CFA</div>
+                                        </div>
+                                        <div class="col-3" style="font-size: 12px;padding-top: 20px;">
+                                            {{ product.approvData.dateAppro.toDate() | momentDate }}
+                                        </div>
+                                        <div class="col-3" style="font-size: 13px;">
+                                            <mat-form-field style="width: 100px;" appearance="outline">
+                                                <input (change)="sumSousTotal()" matInput min="1"
+                                                    [max]="product.approvData.quantiteRestante"
+                                                    [(ngModel)]="product.approvData.qttaprd" type="number">
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-2" style="font-size: 12px;padding-top: 20px;">{{
+                                            product.approvData.puVente * product.approvData.qttaprd }} CFA</div>
+                                        <div class="col-1" style="font-size: 12px;padding-top: 20px;">
+                                            <mat-icon (click)="removeprodListItem(productList.indexOf(product))"
+                                                aria-hidden="false" aria-label="Example home icon"
+                                                style="cursor: pointer;margin-top: -3px;">delete_outline
+                                            </mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <div class="col-12">
+                                <div style="display: flex;justify-content: space-between;">
+                                    <div style="font-size: 17px;">Paiement</div>
+                                    <div>
+                                        <mat-form-field appearance="outline" style="width: 100%;">
+                                            <input matInput [(ngModel)]="appDate" [matDatepicker]="dateAprov">
+                                            <mat-datepicker-toggle matSuffix [for]="dateAprov">
+                                                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #dateAprov disabled="false"></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <br>
+                                <div>
+                                    <ul style="list-style: none;padding-left: 0px;border-bottom: 1px solid #5f5f5f;padding-bottom: 5px;">
+                                        <li style="display: flex;justify-content: space-between;">
+                                            <div style="color: #5f5f5f;">Sous-total</div>
+                                            <div style="color: #5f5f5f;">{{sousTotal}} CFA</div>
+                                        </li>
+                                        <li style="display: flex;justify-content: space-between;margin-top: 15px;">
+                                            <div style="color: #5f5f5f;cursor: pointer;" (click)="AddGift()">Ajouter une
+                                                réduction</div>
+                                            <div style="color: #5f5f5f;">{{reduction}} CFA</div>
+                                        </li>
+                                        <li style="display: flex;justify-content: space-between;margin-top: 15px;">
+                                            <div (click)="AddShip()" style="color: #5f5f5f;cursor: pointer;">Ajouter
+                                                l'expédiction</div>
+                                            <div style="color: #5f5f5f;">{{expedition}} CFA</div>
+                                        </li>
+                                        <li style="display: flex;justify-content: space-between;margin-top: 15px;font-weight: 500;">
+                                            <div style="color: #000;">Total</div>
+                                            <div style="color: #000;">{{ sousTotal + expedition - reduction}} CFA
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul style="list-style: none;padding-left: 0px;">
+                                        <li style="display: flex;justify-content: space-between;margin-top: 15px;">
+                                            <div style="color: #5f5f5f;cursor: pointer;" (click)="Addpaiement()">Somme payé</div>
+                                            <div style="color: #5f5f5f;">{{sommePaye}} CFA</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div style="width: 100%;min-height: 500px;background-color: white;border-radius: 20px;padding: 20px;">
+
+                    <div style="display: flex;justify-content: space-between;margin-bottom: 10px;">
+                        <h4>Client</h4>
+                        <div (click)="addProd()" style="text-decoration: none;color: #4a69bd;cursor: pointer;">Créer un
+                            client</div>
+                    </div>
+                    <div style="display: block;width: 100%;">
+
+                        <mat-form-field class="example-full-width col-12" appearance="outline">
+                            <mat-label>Choisir un client</mat-label>
+                            <input type="text" placeholder="selection" aria-label="Number" matInput
+                                [formControl]="myControl" [matAutocomplete]="auto">
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                <mat-option (click)="selectedClient(option)" *ngFor="let option of filteredOptions | async" [value]="option.nomComplet">
+                                    {{option.nomComplet}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+
+                    </div>
+                    <div style="display: flex;width: 100%;justify-content: space-between;margin-top: 10px;">
+                        <h4 style="font-size: 15px;">ADRESSE PAR DÉFAUT</h4>
+                        <a href="#" style="text-decoration: none;margin-top: 1px;color: #4a69bd;">Gérer</a>
+                    </div>
+                    <div class="adrsDtls"
+                        style="padding-bottom: 15px;border-bottom: 1px solid rgb(155, 155, 155);color: #5f5f5f;">
+                        <p><a href="#" style="text-decoration: none;color: #4a69bd;">{{customer.email}}</a></p>
+                        <p>{{ customer.nomComplet }}</p>
+                        <p *ngIf="customer.adresse">{{customer.adresse[2]}}</p>
+                        <p>{{ customer.telephone }}</p>
+                        <p *ngIf="customer.adresse">{{customer.adresse[1]}}, {{customer.adresse[0]}}</p>
+                    </div>
+                    <div style="display: flex;width: 100%;justify-content: space-between;margin-top: 20px;">
+                        <h4 style="font-size: 15px;text-transform: uppercase;">Note</h4>
+                    </div>
+                    <div class="row">
+                        <mat-form-field class="example-full-width col-12" appearance="outline">
+                            <mat-label>Informations suplémentaire</mat-label>
+                            <textarea matInput [(ngModel)]="commandeObj.remarque"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

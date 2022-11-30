@@ -1,0 +1,64 @@
+
+
+.RightDiv, .LeftDiv{
+    position: fixed;
+    height: 100%;
+    width: 50%;
+}
+.RightDiv{
+    right: 0px;
+    background-color: #4a69bd;
+}
+.LeftDiv{
+    left: 0px;
+    text-align: center;
+    margin-top: 15%;
+}
+.Login_baniere{
+    width: 80%;
+}
+h3{
+    font-weight: 400;
+    margin-bottom: 20px;
+    font-size: 23px;
+}
+h1{
+    font-weight: bold;
+    color: #4a69bd;
+    font-size: 45px;
+    text-transform: uppercase;
+}
+h2{
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    font-size: 27px;
+}
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: center;
+  }
+mat-form-field{
+    min-width: 350px;
+}
+.underTtl{
+    color: rgb(216, 216, 216);
+}
+::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+       color: white;
+       background-color: rgba(255, 255, 255, 0.15);
+       border-radius: 5px;
+    }
+    mat-form-field {
+       .mat-hint, input, ::placeholder, .mat-form-field-label {
+          color: white;
+       }
+    }
+ }

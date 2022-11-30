@@ -1,0 +1,123 @@
+<div class="container-fluid" style="min-width: 800px;padding: 50px;background-color: #e6e9f5;max-height: 600px;overflow-y: scroll;">
+    <div style="width: 100%;">
+        <h3 style="text-transform: uppercase;text-align: center;">Mise à jour des infos clients</h3><br>
+        <div class="container">
+            <div class="col-8 offset-2">
+                <div style="background-color: white;border-radius: 10px;padding: 20px;width: 100%;min-height: 120px;">
+                    <div>
+                        <h4>Nom complet</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.nomComplet">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.nomComplet" (click)="data.clientInfo.nomComplet=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Email</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.email">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.email" (click)="data.clientInfo.email=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Téléphone</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.telephone">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.telephone" (click)="data.clientInfo.telephone=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Pays</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.adresse[0]">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.adresse[0]" (click)="data.clientInfo.adresse[0]=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Ville</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.adresse[1]">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.adresse[1]" (click)="data.clientInfo.adresse[1]=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Adresse</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.adresse[2]">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.adresse[2]" (click)="data.clientInfo.adresse[2]=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>compagnie</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.compagnie">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.compagnie" (click)="data.clientInfo.compagnie=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Poste dans l'entreprise</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.posteClient">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.posteClient" (click)="data.clientInfo.posteClient=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Remarque</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.remarque">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.remarque" (click)="data.clientInfo.remarque=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Banque</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <input matInput type="text" [(ngModel)]="data.clientInfo.banque[0]">
+                            <button style="border-radius: 3px;" matSuffix mat-icon-button
+                                aria-label="Clear" *ngIf="data.clientInfo.banque[0]" (click)="data.clientInfo.banque[0]=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div><button (click)="updateDetailClient()" style="width: 100%;" mat-raised-button
+                        color="primary">Enrégistrer</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

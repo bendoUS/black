@@ -1,0 +1,104 @@
+<style>
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        margin-bottom: 0px !important;
+    }
+
+    .example-chip-list {
+        width: 100%;
+    }
+</style>
+<div class="stockContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div
+                    style="width: 100%;background-color: #272727;min-height: 200px;border-radius: 15px;display: flex;justify-content: space-between;padding: 30px;">
+                    <div style="width: 50%;">
+                        <div style="color: #FFF;font-size: 15px;">Des profils des clients pour les administrateurs qui contiennent des informations. Sur les achats, informations personnelles et remarques.</div>
+                        <div style="display: flex;">
+                            <input [(ngModel)]="cli" type="text"
+                                style="width: 75%;background-color: #FFF;height: 50px;border: none;border-radius: 50px;padding: 0 10px;margin-top: 70px;"
+                                placeholder="Filtrer les clients">
+                        </div>
+                    </div>
+                    <div
+                        style="width: 160px;height: 160px;background-color: #9b59b6;border-radius: 10px;padding: 20px;">
+                        <img src="assets/89e353126259079.6129982d27ca7.jpg"
+                            style="width: 50px;height: 50px;border-radius: 100%;" alt="">
+                        <div style="margin-top: 30px;color: #FFF;font-size: 12px;">Un système de filtre optimisé pour vos tris.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="headerDiv">
+
+            <!--div>
+                <form class="example-form" style="padding-right: 30px;">
+                    <div class="row">
+                        <mat-form-field class="example-full-width col-7" appearance="outline">
+                            <mat-label>Trouver un client</mat-label>
+                            <input (keyup)="applyFilter($event)" type="text" aria-label="Number" matInput
+                                [formControl]="control">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                        <div class="col-4 offset-1" style="text-align: right;margin-top: 10px;">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button *ngIf="selection.selected.length >= 1" mat-raised-button
+                                        color="warn">Supprimer définitivement</button>
+                                </div>
+                                <div class="col-5 offset-1">
+                                    <button mat-raised-button color="primary">Créer un client</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div-->
+
+
+
+        </div><br>
+        <div class="row">
+            <div class="col-12">
+                <div style="width: 100%;">
+                    <div class="headContainer">
+                        <div class="row">
+                            <div class="col-12" style="padding: 15px 20px;">
+                                <div class="row">
+                                    <div class="col-3" style="font-size: 12px;font-weight: 500;">Clients</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Compagnie</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Adresse e-mail</div>
+                                    <div class="col-3" style="font-size: 12px;font-weight: 500;">Dernière commande</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Achat total</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="loaderSpinner" style="width: 100%;display: flex;justify-content: space-around;margin-top: 5%;">
+                        <mat-spinner></mat-spinner>
+                    </div>
+                    <div *ngIf="!loaderSpinner">
+                        <div *ngFor="let client of ( allClient | orderAlpha ) | filter : cli" class="selectElem animate__animated animate__fadeIn">
+                            <div class="row">
+                                <div class="col-12" style="padding: 15px 20px;"
+                                    (click)="changePage2('client', 'detailClient', client.id)">
+                                    <div class="row">
+                                        <div class="col-3" style="font-size: 12px;">{{ client.nomComplet }}</div>
+                                        <div class="col-2" style="font-size: 12px;">{{ client.compagnie }}</div>
+                                        <div class="col-2" style="font-size: 12px;">{{ client.email }}</div>
+                                        <div class="col-3" style="font-size: 12px;">{{ client.createdAt.toDate() | momentDate }}</div>
+                                        <div class="col-2" style="font-size: 12px;">{{ client.som }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button (click)="changePage3('client', 'create')" mat-mini-fab
+                                style="position: fixed;bottom: 60px;right: 50px;" color="primary"><mat-icon aria-hidden="false" aria-label="Example home icon">add
+                            </mat-icon></button>
+</div>

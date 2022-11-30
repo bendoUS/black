@@ -1,0 +1,119 @@
+<style>
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        margin-bottom: 0px !important;
+    }
+
+    .example-chip-list {
+        width: 100%;
+    }
+</style>
+<div *ngIf="detailProduct" class="addProdContainer">
+    <div class="container">
+        <div class="headerDiv">
+            <div class="row">
+                <div class="col-6" style="display: flex;color: rgb(66, 66, 66);">
+                    <mat-icon (click)="changePage('stock')" aria-hidden="false" aria-label="Example home icon"
+                        style="cursor: pointer;">arrow_back</mat-icon>
+                    <div
+                        style="padding-top: 2.5px;text-transform: uppercase;font-size: 20px;font-weight: 600;cursor: pointer;">
+                        {{ detailProduct.designation }}
+                    </div>
+                </div>
+                <div (click)="addProduct()" class="col-3 offset-3"><button style="width: 100%;" mat-raised-button
+                        color="primary">Enrégistrer</button></div>
+            </div>
+
+        </div><br>
+        <div class="row">
+            <div class="col-5">
+                <div
+                    style="background-color: white;width: 100%;max-height: 700px;border-radius: 15px;padding: 15px;margin-top: 10px;">
+                    <div>
+                        <h4>Titre</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <mat-label>Titre du produit</mat-label>
+                            <input matInput type="text" [(ngModel)]="detailProduct.designation">
+                            <button style="border-radius: 3px;" *ngIf="detailProduct.designation" matSuffix mat-icon-button
+                                aria-label="Clear" (click)="detailProduct.designation=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Catégorie</h4>
+                        <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                            appearance="outline">
+                            <mat-label>Catégorie du produit</mat-label>
+                            <input matInput type="text" [(ngModel)]="detailProduct.categorie">
+                            <button style="border-radius: 3px;" *ngIf="detailProduct.categorie" matSuffix mat-icon-button
+                                aria-label="Clear" (click)="detailProduct.categorie=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <h4>Statut</h4>
+                        <mat-form-field class="col-12" style="margin-top: -15px;" appearance="outline">
+                            <mat-label>Satut du produit</mat-label>
+                            <mat-select [(value)]="detailProduct.statut">
+                                <mat-option value="Active">Active</mat-option>
+                                <mat-option value="Attente">Attente</mat-option>
+                                <mat-option value="Ebauche">Ebauche</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <div style="display: flex;justify-content: space-between;">
+                            <h4>Options</h4>
+                            <a (click)="addOption()" style="text-decoration: none;color: #4a69bd;cursor: pointer;">Ajouter une option</a>
+                        </div>
+                        
+                        <mat-form-field class="example-chip-list col-12" appearance="outline">
+                            <mat-label>Créer les options</mat-label>
+                            <mat-chip-list #chipList aria-label="Fruit selection">
+                                <mat-chip *ngFor="let option of detailProduct.labelVariante" (removed)="remove(option)">
+                                    {{option}}
+                                    <button matChipRemove>
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </mat-chip>
+                                <input #fruitInput [formControl]="fruitCtrl"[matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    (matChipInputTokenEnd)="add($event)">
+                            </mat-chip-list>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6"><button (click)="createVariante()" style="width: 100%;" mat-stroked-button color="primary">Créer une variante</button></div>
+                        <div class="col-6"><button (click)="createApprov()" style="width: 100%;" mat-stroked-button
+                                color="primary">Approvisionnement</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-7">
+                <div  style="width: 100%;">
+                    <div style="padding: 5px 15px;margin-bottom: 20px;text-transform: uppercase;">
+                        <div class="row">
+                            <div class="col-5" style="font-size: 12px;font-weight: 500;">Variante</div>
+                            <div class="col-4" style="font-size: 12px;font-weight: 500;">Quantité</div>
+                        </div>
+                    </div>
+                    <div *ngFor="let variant of listeVariante" style="background-color: white;border-radius: 5px;padding: 15px 10px;vertical-align: middle;margin-top: 10px;">
+                        <div class="row">
+                            <div class="col-5" style="font-size: 12px;padding-top: 10px;"><span *ngIf="variant.proprieteVariante[0]">{{ variant.proprieteVariante[0] }}</span><span *ngIf="variant.proprieteVariante[1]"> / {{ variant.proprieteVariante[1] }}</span><span *ngIf="variant.proprieteVariante[2]"> / {{ variant.proprieteVariante[2] }}</span></div>
+                            <div class="col-4" style="font-size: 12px;padding-top: 10px">{{ variant.quantite }}</div>
+                            <div class="col-3"><button (click)="openUpdateVar(variant)" style="width: 100%;" mat-stroked-button
+                                    color="primary">Modifier</button></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <mat-paginator style="background-color: #e6e9f5;" aria-label="Select page">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

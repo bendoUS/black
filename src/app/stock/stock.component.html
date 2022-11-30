@@ -1,0 +1,134 @@
+<style>
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        margin-bottom: 0px !important;
+    }
+
+    .example-chip-list {
+        width: 100%;
+    }
+</style>
+<div class="stockContainer">
+    <div *ngIf="loaderSpinner" style="width: 100%;display: flex;justify-content: space-around;margin-top: 25%;">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!loaderSpinner" class="container">
+        <div class="headerDiv">
+            <div>
+                <form class="example-form" style="padding-right: 30px;">
+                    <div class="row">
+                        <mat-form-field class="example-full-width col-7" appearance="outline">
+                            <mat-label>Filtrer les produits</mat-label>
+                            <input [(ngModel)]="term" type="text" aria-label="Number" matInput [formControl]="control">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                        <div class="col-4 offset-1" style="text-align: right;margin-top: 10px;">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button (click)="delectProduct()" *ngIf="deleteTab.length > 0" mat-raised-button
+                                        color="warn">Supprimer définitivement</button>
+                                </div>
+                                <div class="col-5 offset-1">
+                                    <button (click)="changePage2('stock', 'produit', 'New')" mat-raised-button color="primary">Ajouter un
+                                        produit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <div
+                        style="width: 100%;position: relative;max-height: 200px;background-color: white;border-radius: 10px;padding: 10px;">
+                        <h3 style="font-weight: 600;color: rgb(78, 78, 78);font-size: 13px;">Ventes totales</h3>
+                        <div style="display: flex;justify-content: space-between;">
+                            <div style="font-size: 23px;font-weight: 700;padding-top: 15px;display: flex;">CFA {{sum}}
+                                <div style="font-size: 12px;color: #85e66d;font-weight: 400;margin-left: 10px;">
+                                    +{{percentVente}}%
+                                </div>
+                            </div>
+                            <div style="background-color: #dbdfec;padding: 10px;border-radius: 30px;"><img
+                                    src="assets/dollar.png" style="width: 25px;" alt=""></div>
+                        </div>
+                        <div style="font-size: 12px;color: #868686;margin-top: 20px">Depuis la semaine dernière</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div
+                        style="width: 100%;position: relative;max-height: 200px;background-color: white;border-radius: 10px;padding: 10px;">
+                        <h3 style="font-weight: 600;color: rgb(78, 78, 78);font-size: 13px;">Nombre de commandes</h3>
+                        <div style="display: flex;justify-content: space-between;">
+                            <div style="font-size: 23px;font-weight: 700;padding-top: 15px;display: flex;">
+                                {{commandePeriodique}}
+                                <div style="font-size: 12px;color: #85e66d;font-weight: 400;margin-left: 10px;">
+                                    +{{percentCommande}}%
+                                </div>
+                            </div>
+                            <div style="background-color: #dbdfec;padding: 10px;border-radius: 30px;"><img
+                                    src="assets/inbox.png" style="width: 25px;" alt=""></div>
+                        </div>
+                        <div style="font-size: 12px;color: #868686;margin-top: 20px">Depuis la semaine dernière</div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div
+                        style="width: 100%;position: relative;max-height: 200px;background-color: white;border-radius: 10px;padding: 10px;">
+                        <h3 style="font-weight: 600;color: rgb(78, 78, 78);font-size: 13px;">Nombre de clients</h3>
+                        <div style="display: flex;justify-content: space-between;">
+                            <div style="font-size: 23px;font-weight: 700;padding-top: 15px;display: flex;">
+                                {{clientPeriodique}} <div
+                                    style="font-size: 12px;color: #85e66d;font-weight: 400;margin-left: 10px;">
+                                    +{{percentClient}}%
+                                </div>
+                            </div>
+                            <div style="background-color: #dbdfec;padding: 10px;border-radius: 30px;"><img
+                                    src="assets/following.png" style="width: 25px;" alt=""></div>
+                        </div>
+                        <div style="font-size: 12px;color: #868686;margin-top: 20px">Depuis la semaine dernière</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div style="width: 100%;">
+                    <div class="headContainer">
+                        <div class="row">
+                            <div class="col-12" style="padding: 15px 20px;">
+                                <div class="row">
+                                    <div class="col-3" style="font-size: 12px;font-weight: 500;">Produit</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Catégorie</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Statut</div>
+                                    <div class="col-3" style="font-size: 12px;font-weight: 500;">Quantité</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Date de création</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngFor="let produits of produitList | filter : term " class="selectElem animate__animated animate__fadeIn">
+                        <div class="row">
+                            <!--div class="col-1" style="font-size: 12px;padding: 15px">
+                                <mat-checkbox class="example-margin" (click)="insertTab(produits.id)" color="primary">
+                                </mat-checkbox>
+                            </div-->
+                            <div class="col-12" style="padding: 15px 20px;"
+                                (click)="changePage2('stock', 'produit', produits.id)">
+                                <div class="row">
+                                    <div class="col-3" style="font-size: 12px;">{{ produits.designation }}</div>
+                                    <div class="col-2" style="font-size: 12px;">{{ produits.categorie }}</div>
+                                    <div class="col-2"
+                                        [ngStyle]="{'color':produits.statut === 'Active' ? 'green' : produits.statut === 'Ebauche'? 'red' : 'gray' }"
+                                        style="font-size: 12px;">{{ produits.statut }}</div>
+                                    <div class="col-3" style="font-size: 12px;">{{ produits.quantite }}</div>
+                                    <div class="col-2" style="font-size: 12px;">{{ produits.dateCreation.toDate() | momentDate }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

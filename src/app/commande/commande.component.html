@@ -1,0 +1,115 @@
+<style>
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        margin-bottom: 0px !important;
+    }
+
+    .example-chip-list {
+        width: 100%;
+    }
+</style>
+<div class="stockContainer">
+    <div *ngIf="loaderSpinner" style="width: 100%;display: flex;justify-content: space-around;margin-top: 25%;">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!loaderSpinner" class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <div
+                        style="width: 100%;background-color: #bdcddf;min-height: 200px;border-radius: 15px;display: flex;justify-content: space-between;padding: 30px;">
+                        <div>
+                            <div style="color: #FFF;font-size: 15px;">Récapitulatif des commandes. Espace dédiée pour
+                                <br> la création et l'adiminitration des commandes</div>
+                            <button (click)="changePage('create')" mat-flat-button
+                                style="background-color: #FFF;margin-top: 80px;">Créer une commande</button>
+                        </div>
+                        <div
+                            style="width: 160px;height: 160px;background-color: #4a69bd;border-radius: 10px;padding: 20px;">
+                            <img src="assets/ebeb8a123766625.60f5958c6ad31.jpg"
+                                style="width: 50px;height: 50px;border-radius: 100%;" alt="">
+                            <div style="margin-top: 30px;color: #FFF;font-size: 12px;">Un système de filtre optimisé
+                                pour vos tris.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div><input [(ngModel)]="cmd" type="text"
+                            style="width: 100%;background-color: #FFF;height: 50px;border: none;border-radius: 50px;padding: 0 10px;"
+                            placeholder="Filtrer les clients"></div>
+                    <div style="width: 100%;height: 160px;background-color: #FFF;border-radius: 10px;margin-top: 10px;">
+                        <div class="row">
+                            <div class="col-6">
+                                <div style="width: 100%;padding: 15px 10px;">
+                                    <canvas id="cmdChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <ul style="list-style: none;padding-left: 0px;margin-top: 50px;">
+                                    <li style="color: #5a5a5a;font-size: 13px;display: flex;">
+                                        <div
+                                            style="width: 10px;height: 10px;border-radius: 10px;background-color: #4a69bd;margin-top: 5.5px;margin-right: 5px;">
+                                        </div>
+                                        En cours: <span style="padding-left: 10px;">{{nbCommandeInvalide}}</span>
+                                    </li><br>
+                                    <li style="color: #5a5a5a;font-size: 13px;display: flex;">
+                                        <div
+                                            style="width: 10px;height: 10px;border-radius: 10px;background-color: #2ecc71;margin-top: 5.5px;margin-right: 5px;">
+                                        </div>
+                                        Terminé: <span style="padding-left: 10px;">{{nbCommandeValide}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="headerDiv">
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div style="width: 100%;">
+                        <div class="headContainer">
+                            <div class="row">
+                                <div class="col-12" style="padding: 15px 20px;">
+                                    <div class="row">
+                                        <div class="col-3" style="font-size: 12px;font-weight: 500;">Commande</div>
+                                        <div class="col-2" style="font-size: 12px;font-weight: 500;">Date</div>
+                                        <div class="col-2" style="font-size: 12px;font-weight: 500;">Client</div>
+                                        <div class="col-3" style="font-size: 12px;font-weight: 500;">Total</div>
+                                        <div class="col-2" style="font-size: 12px;font-weight: 500;">Statut du payement
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngFor="let commande of allCommande | filter : cmd"
+                            class="selectElem animate__animated animate__fadeIn">
+                            <div class="row">
+                                <div class="col-12" style="padding: 15px 20px;"
+                                    (click)="changePage2('commande', 'detailcommande', commande.id)">
+                                    <div class="row">
+                                        <div class="col-3" style="font-size: 12px;">#{{commande.refCommande}}</div>
+                                        <div class="col-2" style="font-size: 12px;">{{commande.date.toDate() |
+                                            momentDate }}</div>
+                                        <div class="col-2" style="font-size: 12px;">{{commande.nomClient}}</div>
+                                        <div class="col-3" style="font-size: 12px;">{{commande.prixTotal}} CFA</div>
+                                        <div class="col-2" style="font-size: 12px;display: flex;">
+                                            <div *ngIf="!commande.etatPayement"
+                                                style="width: 10px;height: 10px;border-radius: 10px;background-color: #4a69bd;margin-top: 5.5px;margin-right: 5px;">
+                                            </div>
+                                            <div *ngIf="!commande.etatPayement"> En cours</div>
+                                            <div *ngIf="commande.etatPayement"
+                                                style="width: 10px;height: 10px;border-radius: 10px;background-color: #2ecc71;margin-top: 5.5px;margin-right: 5px;">
+                                            </div>
+                                            <div *ngIf="commande.etatPayement">Terminé</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

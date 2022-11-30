@@ -1,0 +1,78 @@
+<style>
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        margin-bottom: 0px !important;
+    }
+
+    .example-chip-list {
+        width: 100%;
+    }
+</style>
+<div class="stockContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div
+                    style="width: 100%;background-color: #0a3d62;min-height: 200px;border-radius: 15px;display: flex;justify-content: space-between;padding: 30px;">
+                    <div style="width: 50%;">
+                        <div style="color: #FFF;font-size: 15px;">Liste et récapitulation concernant <br> chaque
+                            approvisonnement.</div>
+                        <div><input [(ngModel)]="term" type="text"
+                                style="width: 100%;background-color: #FFF;height: 50px;border: none;border-radius: 50px;padding: 0 10px;margin-top: 70px;"
+                                placeholder="Filtrer les clients"></div>
+                    </div>
+                    <div
+                        style="width: 200px;height: 160px;background-color: #f1c40f;border-radius: 10px;padding: 20px;">
+                        <img src="assets/71628790282601.5e1387ca4f21d.png"
+                            style="width: 50px;height: 50px;border-radius: 100%;" alt="">
+                        <div style="margin-top: 30px;color: #FFF;font-size: 12px;">Un système de filtre optimisé pour
+                            vos tris.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div style="width: 100%;">
+                    <div class="headContainer">
+                        <div class="row">
+                            <div class="col-12" style="padding: 15px 10px;">
+                                <div class="row">
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Date</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Stock initial</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Stock restant</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Stock vendu</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Bénéfice</div>
+                                    <div class="col-2" style="font-size: 12px;font-weight: 500;">Produit</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="loaderSpinner"
+                        style="width: 100%;display: flex;justify-content: space-around;margin-top: 5%;">
+                        <mat-spinner></mat-spinner>
+                    </div>
+                    <div *ngIf="!loaderSpinner">
+                        <div *ngFor="let all of allAppro | filter : term" (click)="showApprovDetail(all.id)"
+                            class="selectElem">
+                            <div class="row">
+                                <div class="col-12" style="padding: 15px 10px;">
+                                    <div class="row">
+                                        <div class="col-2" style="font-size: 12px;">{{ all.dateAppro.toDate() |
+                                            momentDate }}</div>
+                                        <div class="col-2" style="font-size: 12px;">{{all.quantite}}</div>
+                                        <div class="col-2" style="font-size: 12px;">{{all.quantite - all.quantiteVendu}}
+                                        </div>
+                                        <div class="col-2" style="font-size: 12px;">{{all.quantiteVendu}}</div>
+                                        <div class="col-2" style="font-size: 12px;">{{all.marge}}</div>
+                                        <div class="col-2" style="font-size: 12px;"><span
+                                                *ngFor="let variante of all.varianteName">{{variante}} </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

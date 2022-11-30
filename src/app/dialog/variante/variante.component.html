@@ -1,0 +1,57 @@
+<div class="container-fluid" style="min-width: 800px;padding: 50px;background-color: #e6e9f5;">
+    <div style="width: 100%;">
+        <h3 style="text-transform: uppercase;text-align: center;">Ajouter une variante</h3><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-5">
+                    <div style="background-color: white;border-radius: 10px;padding: 0;padding-bottom: 10px;">
+                        <h4 style="background-color: rgb(250, 250, 250);border-radius: 10px 10px 0 0;padding: 10px 20px;font-weight: 500;color: rgb(92, 92, 92);">
+                            Variantes</h4>
+                        <div *ngFor="let variante of varianteList.variante" style="padding: 0 20px;font-size: 12px;margin-bottom: 5px;">
+                            <p><span *ngFor="let varo of variante.proprieteVariante">{{ varo }} </span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div  style="background-color: white;border-radius: 10px;padding: 20px;width: 100%;min-height: 120px;">
+                        <div *ngIf="varianteList.detailPr.labelVariante[0]">
+                            <h4>{{ varianteList.detailPr.labelVariante[0] }}</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="text" [(ngModel)]="Vari1">
+                                <button style="border-radius: 3px;" *ngIf="Vari1" matSuffix mat-icon-button
+                                    aria-label="Clear" (click)="Vari1=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <div *ngIf="varianteList.detailPr.labelVariante[1]">
+                            <h4>{{ varianteList.detailPr.labelVariante[1] }}</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="text" [(ngModel)]="Vari2">
+                                <button style="border-radius: 3px;" *ngIf="Vari2" matSuffix mat-icon-button
+                                    aria-label="Clear" (click)="Vari2=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <div *ngIf="varianteList.detailPr.labelVariante[2]">
+                            <h4>{{ varianteList.detailPr.labelVariante[2] }}</h4>
+                            <mat-form-field style="margin-top: -15px;" class="example-form-field col-12"
+                                appearance="outline">
+                                <input matInput type="text" [(ngModel)]="Vari3">
+                                <button style="border-radius: 3px;" *ngIf="Vari3" matSuffix mat-icon-button
+                                    aria-label="Clear" (click)="Vari3=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <div><button (click)="addVariante(varianteList.idProduit)" style="width: 100%;" mat-raised-button
+                            color="primary">Enrégistrer</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
